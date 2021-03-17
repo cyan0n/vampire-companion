@@ -3,6 +3,7 @@ import { GetServerSideProps } from 'next';
 import { connectToDatabase } from '../../util/mongodb'
 import { ObjectID } from 'mongodb'
 import Player from '../../types/player';
+import Character from '../../components/character'
 
 const PlayerPage = ({
 	player
@@ -12,7 +13,7 @@ const PlayerPage = ({
 	return (
 		<>
 			<h1>{player.name}</h1>
-			<h2>{player.character.clan}</h2>
+			<Character character={player.character}/>
 		</>
 	)
 }

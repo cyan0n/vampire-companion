@@ -3,12 +3,16 @@ import Attribute from '../types/attribute';
 
 const {useState} = React;
 
-export default function Attribute(attribute: Attribute) {
-	const [value, setValue] = useState(attribute.);
+export default function AttributeComponent({
+	attribute
+} : {
+	attribute: Attribute
+}) {
+	const [value, setValue] = useState(attribute.value);
 
 	return (
 		<>
-			<p>{value}</p>
+			<p>{attribute.label}: {value}</p>
 		</>
-	);
+	)
 }
