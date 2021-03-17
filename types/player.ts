@@ -1,6 +1,7 @@
 import Character from "./character";
 
 export default interface Player {
+	_id: string;
 	name: string;
 	character: Character;
 }

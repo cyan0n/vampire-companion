@@ -1,8 +1,18 @@
 import DBHandler, { DatabaseRequest } from '../../lib/DBHandler';
-import { NextApiResponse } from 'next';
+import { NextApiRequest, NextApiResponse } from 'next';
+import nc from 'next-connect'
 import Player from '../../types/player';
+import { connectToDatabase } from "../../util/mongodb"
 
-const handler = DBHandler();
+const handler = nc<NextApiRequest, NextApiResponse>()
+handler.get<NextApiRequest, NextApiResponse>(async (req, res) => {
+	console.log('hello')
+	const { db } = await connectToDatabase()
+
+	const players = await db.collection("players").find({})
+	res.status(200).json(players)
+})
+/* const handler = DBHandler();
 
 handler.post<DatabaseRequest, NextApiResponse>(async (req, res) => {
 	let data: Player = JSON.parse(req.body);
@@ -16,5 +26,5 @@ handler.get<DatabaseRequest, NextApiResponse>(async (req, res) => {
 	console.log(doc);
 	res.status(200).json(doc);
 })
-
+*/
 export default handler;

@@ -1,40 +1,33 @@
 import { useRouter } from 'next/router';
-import { GetStaticProps, GetStaticPaths } from 'next';
-import dbConnect from '../../helper/db'
+import { GetServerSideProps } from 'next';
+import { connectToDatabase } from '../../util/mongodb'
+import { ObjectID } from 'mongodb'
+import Player from '../../types/player';
 
-export const getStaticProps: GetStaticProps = async (context) => {
-	console.log(context)
-	return {
-	 props: {}
-	}
-}
-
-export const getStaticPaths: GetStaticPaths = async () => {
-	const db = await dbConnect();
-	const players = await db.collection('players').find({})
-	const paths = players.map(player => {
-		return {
-			params: {
-				id: player.id.toString()
-			}
-		}
-	})
-
-	return {
-		paths,
-		fallback: false,
-	}
-}
-
-const Player = () => {
-	const router = useRouter();
-	const { id } = router.query;
-
+const PlayerPage = ({
+	player
+}: {
+	player: Player
+}) => {
 	return (
 		<>
-			<h1></h1>
+			<h1>{player.name}</h1>
+			<h2>{player.character.clan}</h2>
 		</>
 	)
 }
 
-export default Player
+export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+	const { db } = await connectToDatabase()
+	const player = await db
+		.collection('players')
+		.findOne({"_id": new ObjectID(params.id as string)})
+	console.log(params)
+	return {
+		props: {
+			player: JSON.parse(JSON.stringify(player)),
+		}
+	}
+}
+
+export default PlayerPage
