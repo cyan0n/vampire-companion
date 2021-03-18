@@ -5,8 +5,6 @@ export default function CheckButton() {
 	const [pool, setPool] = React.useState(0)
 	const [hunger, setHunger] = React.useState(0)
 	const handleClick = () => {
-		console.log('CHECK')
-		console.log({poolSize: pool, hunger})
 		console.log(Check({poolSize: pool, hunger}))
 	}
 

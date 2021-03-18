@@ -27,7 +27,7 @@ const LandingPage: React.FC<LandingPageProps> = ({
 				{players.map(player => (
 					<li key={player._id}>
 						<Link href={`/player/${player._id}`}>
-							<a>{player.name}</a>	
+							<a>{player.name}</a>
 						</Link>
 					</li>
 				))}

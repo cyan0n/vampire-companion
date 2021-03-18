@@ -148,6 +148,7 @@ export default function Check({
 		messyCritical: false,
 		bestialFailure: false
 	}
+	console.log('etst')
 	console.log({poolSize, hunger})
 	const dicePool = new DicePool(poolSize, hunger)
 	let criticalCount = 0

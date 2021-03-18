@@ -1,20 +1,14 @@
 import { ReactElement } from 'react'
-import axios from 'axios'
+import { Check } from '../libs/dice'
 
-const url = 'https://discord.com/api/webhooks/820970895547957308/m9oTYkTFeTnkxxkh0Idow3CkDYM90Vem5qzAF4YR_wE1sn413-cY1lciOA6sAyT-y4du'
-
-function send() {
-  console.log("SEND")
-  axios.post(url, {
-    content: "Hello world!",
-    tts: true
-  }, {
-    headers: {
-      'Content-Type': 'application/json',
-    },
+export const handleClick = () => {
+  const result = Check({
+    poolSize: 6,
+    hunger: 2
   })
+  console.log(result)
 }
 
 export default function RollButton(): ReactElement {
-  return <button onClick={() => send()}>Press me</button>
+  return <button className="rounded" onClick={() => handleClick()}>Roll me</button>
 }
