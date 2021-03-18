@@ -23,7 +23,6 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
 	const player = await db
 		.collection('players')
 		.findOne({"_id": new ObjectID(params.id as string)})
-	console.log(params)
 	return {
 		props: {
 			player: JSON.parse(JSON.stringify(player)),

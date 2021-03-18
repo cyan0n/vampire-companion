@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
+    "discord-webhook-node": "^1.1.8",
     "mongodb": "^3.6.5",
     "next": "10.0.9",
     "next-connect": "^0.10.1",
