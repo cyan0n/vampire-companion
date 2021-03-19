@@ -8,6 +8,7 @@ const hook = new Webhook({
 })
 
 export default (req, res) => {
+	console.log("Webhook API Called")
   const result = JSON.parse(req.body) as CheckResult
   let foo = ""
   result.faces.forEach(face => {
@@ -37,6 +38,9 @@ export default (req, res) => {
     .setDescription(foo)
   hook.setUsername('Thomas')
   hook.send(message)
+		.then(res => {
+			console.log('Hook Sent success?!')
+		})
 		.catch(err => {
 			console.log(`Webhook error:`)
 			console.error(err.message)
