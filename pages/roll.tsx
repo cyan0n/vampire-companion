@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react';
 import NumberInput from '../components/numberInput'
 import { Check } from '../libs/dice'
+import { SendCheck } from '../libs/webhook'
 
 const { useState } = React
 
@@ -11,10 +12,7 @@ export default function Roll(): ReactElement {
   const handleClick = async () => {
     const result = Check({ poolSize, hunger })
     console.log(result)
-    await fetch('/api/webhook', {
-      body: JSON.stringify(result),
-      method: "POST",
-    })
+    SendCheck(result)
   }
 
   return (
