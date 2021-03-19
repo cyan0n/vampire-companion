@@ -2,7 +2,10 @@ import { Webhook, MessageBuilder } from 'discord-webhook-node'
 import { CheckResult, DieFace } from '../../libs/dice'
 
 const { DISCORD_WEBHOOK } = process.env
-const hook = new Webhook(DISCORD_WEBHOOK)
+const hook = new Webhook({
+	url: DISCORD_WEBHOOK,
+	retryOnLimit: true,
+})
 
 export default (req, res) => {
   const result = JSON.parse(req.body) as CheckResult
@@ -36,7 +39,7 @@ export default (req, res) => {
   hook.send(message)
 		.catch(err => {
 			console.log(`Webhook error:`)
-			console.log(err)
+			console.error(err.message)
 		})
   res.status(200).json({ message: "OK" })
 }
