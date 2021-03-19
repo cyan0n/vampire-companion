@@ -34,5 +34,9 @@ export default (req, res) => {
     .setDescription(foo)
   hook.setUsername('Thomas')
   hook.send(message)
+		.catch(err => {
+			console.log(`Webhook error:`)
+			console.log(err)
+		})
   res.status(200).json({ message: "OK" })
 }
