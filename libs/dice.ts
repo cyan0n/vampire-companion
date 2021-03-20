@@ -8,20 +8,15 @@ export enum DieFace {
 
 export const Roll = (hunger: boolean = false): DieFace => {
   const value = Math.floor((Math.random() * 10) + 1)
-  console.log(value)
   if (value == 10) {
-    console.log("messy/critical")
     return hunger ? DieFace.messy : DieFace.critical
   }
   if (value > 5) {
-    console.log("succ")
     return DieFace.success
   }
   if (hunger && value == 1) {
-    console.log("bestial")
     return DieFace.bestial
   }
-  console.log("fail")
   return DieFace.failure
 }
 

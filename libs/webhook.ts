@@ -20,9 +20,10 @@ export const SendMessage = async (message: Message) => {
 
 export const SendCheck = async (result: CheckResult, username?: string) => {
   const emojis = result.faces.reduce<string>((acc, cur) => acc + FaceToEmoji(cur), '')
-  const message = {
+  const message: Message = {
     content: `[${result.value}] ${emojis}`,
-    username: username,
+    username,
+    avatar_url: GetAvatar(result),
   }
   await SendMessage(message)
 }
@@ -35,4 +36,14 @@ export const FaceToEmoji = (face: DieFace): string => {
     case DieFace.messy: return ':skull:'
   }
   return ':eight_pointed_black_star:'
+}
+
+export const GetAvatar = (result: CheckResult) => {
+  console.log('enter')
+  if (typeof result.success !== 'boolean') return
+  console.log('asd')
+  if (result.success) {
+    return 'https://www.clipartmax.com/png/middle/179-1795386_patient-success-success-icon-png.png'
+  }
+  return 'https://icons-for-free.com/iconfiles/png/512/emoji+emotion+fail+feeling+sad+unhappy+icon-1320086032518103614.png '
 }
