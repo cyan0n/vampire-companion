@@ -4,7 +4,7 @@ interface NumberInputProps {
   label?: string
   min?: number
   max?: number
-  onChange?: (value) => void
+  onChange?: (value?: number) => void
 }
 
 const NumberInput: React.FC<NumberInputProps> = ({
@@ -31,7 +31,7 @@ const NumberInput: React.FC<NumberInputProps> = ({
     }
   }
 
-  const changeValue = value => {
+  const changeValue = (value: number) => {
     setValue(value)
     onChange(value)
   }

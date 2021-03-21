@@ -30,3 +30,7 @@ a {
 .layout > main {
   @apply md:container mx-auto p-4;
 }
+
+.right-full-minus-w-6 {
+  right: calc(100% - theme('spacing.6'))
+}

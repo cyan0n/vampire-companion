@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+input {
+  background-color: aqua;
+}
+input[type=checkbox]:checked {
+  @apply right-0 border-green-500;
+}
+
+input[type=checkbox]:checked + label {
+  @apply bg-green-500;
+}

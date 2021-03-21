@@ -31,10 +31,11 @@ export const SendCheck = async (result: CheckResult, username?: string) => {
 export const FaceToEmoji = (face: DieFace): string => {
   switch (face) {
     case DieFace.messy: return ':bangbang:'
-    case DieFace.critical: return ':grey_exclamation'
+    case DieFace.critical: return ':grey_exclamation:'
     case DieFace.success: return ':white_check_mark:'
     case DieFace.messy: return ':skull:'
   }
+  // default, DieFace.failure
   return ':eight_pointed_black_star:'
 }
 
