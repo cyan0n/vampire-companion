@@ -1,6 +1,7 @@
 import { CheckResult, DieFace } from './dice'
 
-const DISCORD_WEBHOOK = process.env.NEXT_PUBLIC_DISCORD_WEBHOOK
+const PUBLIC_WEBHOOK = process.env.NEXT_PUBLIC_DISCORD_WEBHOOK 
+const PRIVATE_WEBHOOK = process.env.NEXT_PUBLIC_PRIVATE_WEBHOOK
 
 export interface Message {
   content?: string
@@ -8,8 +9,9 @@ export interface Message {
   avatar_url?: string
 }
 
-export const SendMessage = async (message: Message) => {
-  await fetch(DISCORD_WEBHOOK, {
+export const SendMessage = async (message: Message, isPrivate: boolean = false) => {
+  const url = isPrivate ? PRIVATE_WEBHOOK : PUBLIC_WEBHOOK
+  await fetch(url, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -18,14 +20,18 @@ export const SendMessage = async (message: Message) => {
   })
 }
 
-export const SendCheck = async (result: CheckResult, username?: string) => {
+export const SendCheck = async (
+  result: CheckResult,
+  username?: string,
+  isPrivate?: boolean,
+) => {
   const emojis = result.faces.reduce<string>((acc, cur) => acc + FaceToEmoji(cur), '')
   const message: Message = {
     content: `[${result.value}] ${emojis}`,
     username,
     avatar_url: GetAvatar(result),
   }
-  await SendMessage(message)
+  await SendMessage(message, isPrivate)
 }
 
 export const FaceToEmoji = (face: DieFace): string => {
