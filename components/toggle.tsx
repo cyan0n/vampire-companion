@@ -19,11 +19,10 @@ const Toggle: React.FC<ToggleProps> = ({
 
   return (
     <>
-      <div className='relative inline-block w-28 mr-2 align-middle select-none transition duration-20 ease-in'>
-        <input type="checkbox" onChange={() => null} checked={value} className={`${value ? 'right-0 border-green-500' : 'right-full-minus-w-6'} absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer`}/>
-        <div onClick={() => setValue(!value)} className={`${value ? 'bg-green-500' : ''} overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer`}></div>
+      <div onClick={() => setValue(!value)} className={`${styles.toggle} relative inline-block w-28 align-middle select-none transition duration-20 ease-in`}>
+        <input type="checkbox" checked={value} className={`absolute top-0 block w-8 h-8 rounded-lg bg-white border-4 appearance-none cursor-pointer`} onChange={() => null}/>
+        <div className={`overflow-hidden flex items-center justify-center text-sm h-8 rounded bg-gray-300 text-gray-800 cursor-pointer`}>{label}</div>
       </div>
-      <label className='text-xs text-gray-700'>{label}</label>
     </>
   )
 }

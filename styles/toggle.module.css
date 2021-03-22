@@ -1,14 +1,17 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-input {
-  background-color: aqua;
+.toggle input {
+  right: calc(100% - theme('spacing.8'));
+  transition: all 0.3s ease-in;
+  outline: none;
 }
-input[type=checkbox]:checked {
+
+.toggle input:checked {
   @apply right-0 border-green-500;
 }
 
-input[type=checkbox]:checked + label {
-  @apply bg-green-500;
+.toggle div {
+  transition: all 0.3s ease-in;
+}
+
+.toggle input:checked + div {
+  @apply bg-green-500 text-white;
 }
