@@ -1,10 +1,11 @@
 import React, { ReactElement } from 'react'
 
 interface NumberInputProps {
-  label?: string
+  label?: String
   min?: number
   max?: number
-  onChange?: (value) => void
+  onChange?: (value?: number) => void
+  className?: String
 }
 
 const NumberInput: React.FC<NumberInputProps> = ({
@@ -12,6 +13,7 @@ const NumberInput: React.FC<NumberInputProps> = ({
   min,
   max,
   onChange,
+  className,
 }): ReactElement => {
   const [value, setValue] = React.useState(0)
 
@@ -31,13 +33,13 @@ const NumberInput: React.FC<NumberInputProps> = ({
     }
   }
 
-  const changeValue = value => {
+  const changeValue = (value: number) => {
     setValue(value)
     onChange(value)
   }
 
   return (
-    <div className="flex flex-col text-center w-28 p-1">
+    <div className={`${className} flex flex-col text-center w-28 p-1`}>
       { label && <label className='mb-1'>{label}</label>}
       <div className="flex overflow-hidden rounded bg-gray-500">
         <button className="flex-1 py-1" onClick={decrease}>-</button>

@@ -1,0 +1,17 @@
+.toggle input {
+  right: calc(100% - theme('spacing.8'));
+  transition: all 0.3s ease-in;
+  outline: none;
+}
+
+.toggle input:checked {
+  @apply right-0 border-green-700;
+}
+
+.toggle div {
+  transition: all 0.3s ease-in;
+}
+
+.toggle input:checked + div {
+  @apply bg-green-700 text-white font-bold;
+}
