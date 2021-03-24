@@ -1,4 +1,5 @@
 import React, { ReactElement } from 'react';
+import TextInput from '../components/inputs/textInput';
 import Layout from '../components/layout';
 import NumberInput from '../components/numberInput'
 import Toggle from '../components/toggle'
@@ -26,7 +27,10 @@ export default function Roll(): ReactElement {
   return (
     <Layout>
       <div className='flex flex-col items-center'>
-        <input type="text" onChange={event => setUsername(event.currentTarget.value)}/>
+        <TextInput
+          label="Name"
+          onChange={value => setUsername(value)}
+        />
         <NumberInput
           label='Pool'
           min={0} max={10}
@@ -38,6 +42,7 @@ export default function Roll(): ReactElement {
           onChange={value => setHunger(value)}
         />
         <NumberInput
+          className='mb-2'
           label='Difficulty'
           min={0} max={10}
           onChange={value => setDifficulty(value)}

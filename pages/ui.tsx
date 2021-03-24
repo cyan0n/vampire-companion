@@ -1,4 +1,5 @@
 import React, { ReactElement } from 'react'
+import TextInput from '../components/inputs/textInput'
 import Layout from '../components/layout'
 
 import NumberInput from '../components/numberInput'
@@ -13,6 +14,9 @@ const UIPage: React.FC = (): ReactElement => (
       />
       <Toggle
         label="Toggle"
+      />
+      <TextInput
+        label="Text Input" 
       />
     </div>
   </Layout>
