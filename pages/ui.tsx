@@ -1,9 +1,9 @@
 import React, { ReactElement } from 'react'
-import TextInput from '../components/inputs/textInput'
+import TextInput from '../components/inputs/TextInput'
 import Layout from '../components/layout'
 
-import NumberInput from '../components/numberInput'
-import Toggle from '../components/toggle'
+import NumberInput from '../components/inputs/NumberInput'
+import Toggle from '../components/inputs/ToggleInput'
 
 const UIPage: React.FC = (): ReactElement => (
   <Layout>

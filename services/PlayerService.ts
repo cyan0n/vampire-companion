@@ -3,7 +3,7 @@ import Player from '../types/player'
 
 const collection = 'players'
 
-export const getAllPlayers = async () => {
+export const GetAllPlayers = async () => {
 	const { db } = await connectToDatabase()
 	const result =  await db
 		.collection(collection)

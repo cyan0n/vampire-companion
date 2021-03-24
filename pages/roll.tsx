@@ -1,8 +1,8 @@
 import React, { ReactElement } from 'react';
-import TextInput from '../components/inputs/textInput';
+import TextInput from '../components/inputs/TextInput';
 import Layout from '../components/layout';
-import NumberInput from '../components/numberInput'
-import Toggle from '../components/toggle'
+import NumberInput from '../components/inputs/NumberInput'
+import ToggleInput from '../components/inputs/ToggleInput'
 import { Check } from '../libs/dice'
 import { SendCheck } from '../libs/webhook'
 
@@ -47,7 +47,7 @@ export default function Roll(): ReactElement {
           min={0} max={10}
           onChange={value => setDifficulty(value)}
         />
-        <Toggle
+        <ToggleInput
           label='Private'
           onChange={value => setIsPrivate(value)}
         />
