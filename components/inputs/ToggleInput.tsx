@@ -4,11 +4,13 @@ import styles from '../styles/toggle.module.css'
 interface ToggleProps {
   label?: string
   onChange?: (value?: boolean) => void
+  className?: String
 }
 
 const Toggle: React.FC<ToggleProps> = ({
   label,
   onChange,
+  className,
 }) => {
   const [value, setValue] = React.useState<boolean>(false)
 
@@ -19,8 +21,18 @@ const Toggle: React.FC<ToggleProps> = ({
   }
 
   return (
-    <div onClick={toggleValue} className={`${styles.toggle} relative inline-block w-28 align-middle select-none transition duration-20 ease-in`}>
-      <input type="checkbox" checked={value} className={`absolute top-0 block w-8 h-8 rounded-lg bg-white border-4 appearance-none cursor-pointer`} onChange={() => null}/>
+    <div
+      onClick={toggleValue}
+      className={`
+        ${className}
+        ${styles.toggle}
+        w-28
+      `}
+    >
+      <input type="checkbox"
+        checked={value}
+        onChange={() => null}
+      />
       <div className={`overflow-hidden flex items-center justify-center text-sm h-8 rounded bg-gray-300 text-gray-800 cursor-pointer`}>{label}</div>
     </div>
   )
