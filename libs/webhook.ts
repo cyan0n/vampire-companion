@@ -5,7 +5,7 @@ const PRIVATE_WEBHOOK = process.env.NEXT_PUBLIC_PRIVATE_WEBHOOK
 
 export interface Message {
   content?: string
-  username?: string
+  username?: String
   avatar_url?: string
 }
 
@@ -22,7 +22,7 @@ export const SendMessage = async (message: Message, isPrivate: boolean = false) 
 
 export const SendCheck = async (
   result: CheckResult,
-  username?: string,
+  username?: String,
   isPrivate?: boolean,
 ) => {
   const emojis = result.faces.reduce<string>((acc, cur) => acc + FaceToEmoji(cur), '')

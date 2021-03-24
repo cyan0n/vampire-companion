@@ -13,7 +13,7 @@ export default function Roll(): ReactElement {
   const [hunger, setHunger] = useState(0)
   const [difficulty, setDifficulty] = useState(0)
   const [isPrivate, setIsPrivate] = useState(false)
-  const [username, setUsername] = useState('')
+  const [username, setUsername] = useState<String>('')
   
   const handleClick = async () => {
     const result = Check({
