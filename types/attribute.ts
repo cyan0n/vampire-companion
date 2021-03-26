@@ -12,8 +12,5 @@ export enum AttributeType {
 export type AttributeTypes = "offensive" | "defensive";
 
 export default interface Attribute {
-	label: string;
-	category: AttributeCategory;
-	type: AttributeTypes;
 	value: number;
 }
