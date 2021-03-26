@@ -9,7 +9,7 @@
     ease-in;
 }
 
-.toggle input {
+.input {
   @apply
     absolute
     top-0
@@ -21,19 +21,32 @@
     border-4
     appearance-none
     cursor-pointer;
+
   right: calc(100% - theme('spacing.8'));
   transition: all 0.3s ease-in;
   outline: none;
 }
 
-.toggle input:checked {
-  @apply right-0 border-green-700;
-}
+.background {
+  @apply
+    h-8
+    overflow-hidden
+    flex
+    items-center
+    justify-center
+    text-sm
+    rounded
+    bg-gray-300
+    text-gray-800
+    cursor-pointer;
 
-.toggle div {
   transition: all 0.3s ease-in;
 }
 
-.toggle input:checked + div {
+.input:checked {
+  @apply right-0 border-green-700;
+}
+
+.input:checked + .background {
   @apply bg-green-700 text-white font-bold;
 }

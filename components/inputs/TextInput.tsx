@@ -1,6 +1,5 @@
 import React, { 
   ChangeEvent,
-  ChangeEventHandler,
   ReactElement
 } from 'react'
 
@@ -23,7 +22,7 @@ const TextInput: React.FC<TextInputProps> = ({
 
   return (
     <label className={`${className} flex flex-col items-center`}> {label}
-      <input type="text" className="h-8 w-32 p-2 text-black rounded" onChange={handleChange}/>
+      <input type="text" className="h-8 w-32 p-2 text-black rounded focus:outline-none" onChange={handleChange}/>
     </label>
   )
 }

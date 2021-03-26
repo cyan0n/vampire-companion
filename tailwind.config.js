@@ -5,7 +5,15 @@ module.exports = {
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    container: {
+      center: true,
+    },
+    extend: {
+      fontFamily: {
+        'display': ['"Cinzel Decorative"', 'cursive'],
+        'main': ['"Nanum Gothic"', 'sans-serif'],
+      },
+    },
   },
   variants: {
     extend: {},

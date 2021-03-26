@@ -1,5 +1,8 @@
-import React, { ReactElement } from 'react'
-import styles from '../styles/toggle.module.css'
+import React, {
+  ChangeEvent,
+  ReactElement
+} from 'react'
+import styles from '../../styles/toggle.module.css'
 
 interface ToggleProps {
   label?: string
@@ -11,29 +14,28 @@ const Toggle: React.FC<ToggleProps> = ({
   label,
   onChange,
   className,
-}) => {
-  const [value, setValue] = React.useState<boolean>(false)
+}): ReactElement => {
+  const input = React.useRef(null)
 
-  const toggleValue = () => {
-    const newValue = !value
-    setValue(newValue)
-    onChange(newValue)
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    onChange ? onChange(event.currentTarget.checked) : null
   }
 
   return (
     <div
-      onClick={toggleValue}
       className={`
         ${className}
         ${styles.toggle}
         w-28
       `}
     >
-      <input type="checkbox"
-        checked={value}
-        onChange={() => null}
+      <input
+        type="checkbox"
+        ref={input}
+        className={styles.input}
+        onChange={handleChange}
       />
-      <div className={`overflow-hidden flex items-center justify-center text-sm h-8 rounded bg-gray-300 text-gray-800 cursor-pointer`}>{label}</div>
+      <div className={styles.background} onClick={() => input.current.click()}>{label}</div>
     </div>
   )
 }
