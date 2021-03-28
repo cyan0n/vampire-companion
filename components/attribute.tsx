@@ -40,7 +40,7 @@ const AttributeComponent: React.FC<AttributeProps> = ({
 			onClick={() => setActive(!active)}
 		>
 			<div className="mr-4">{attribute.label}</div>
-			<div>{attribute.value}</div>
+			<div className="font-display">{attribute.value}</div>
 		</div>
 	)
 }

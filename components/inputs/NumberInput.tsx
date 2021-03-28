@@ -43,7 +43,7 @@ const NumberInput: React.FC<NumberInputProps> = ({
       { label && <label className='mb-1'>{label}</label>}
       <div className="flex overflow-hidden rounded bg-gray-500">
         <button className="flex-1 py-1 focus:outline-none" onClick={decrease}>-</button>
-        <div className="flex-1 flex items-center justify-center font-bold"><span>{value}</span></div>
+        <div className="flex-1 flex font-display items-center justify-center font-bold"><span>{value}</span></div>
         <button className="flex-1 py-1 focus:outline-none" onClick={increase}>+</button>
       </div>
     </div>

@@ -29,7 +29,7 @@ const AttributeCategory: React.FC<AttributeCategoryProps> = ({
   return (
     <div className="flex-grow flex-1">
       <h3 className="font-display text-lg text-center mb-2">{label}</h3>
-      <div className="space-y-2">
+      <div className="space-y-3">
         <AttributeComponent
           attribute={attributes[0]}
           onUpdate={value => setOffensive(value)}

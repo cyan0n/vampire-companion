@@ -22,7 +22,7 @@ const CharacterComponent = ({
   return (
     <div className="pt-5">
       <div className="flex flex-row justify-between mb-3">
-        <h1 className="text-xl">{character.name}</h1>
+        <h1 className="text-xl font-display">{character.name}</h1>
         <h2 className="font-display text-xl">{character.clan}</h2>
       </div>
       <AttributesComponent
@@ -46,20 +46,26 @@ const CharacterComponent = ({
         />
       </div>
       <hr className="mt-4 mb-3"/>
-      <div className="flex flex-row justify-between">
-        <div className="font-display text-3xl flex items-center">
-          Pool: <span className="text-5xl ml-3">{poolSize + poolMod}</span>
+      <div className="flex flex-row justify-between items-center">
+        <div className="flex-1 flex-grow">
+          <div className="font-display text-3xl flex items-center">
+            Pool: <span className="text-5xl ml-3">{poolSize + poolMod}</span>
+          </div>
         </div>
-        <RollCheckButton
-          check={{poolSize: poolSize + poolMod, hunger, difficulty}}
-          username={character.name}
-          is_private={isPrivate}
-        />
-        <Toggle
-          className="mb-1 w-36"
-          label="Nascoto"
-          onChange={value => setIsPrivate(value)}
-        />
+        <div className="flex-1 flex-grow text-center">
+          <RollCheckButton
+            check={{poolSize: poolSize + poolMod, hunger, difficulty}}
+            username={character.name}
+            is_private={isPrivate}
+          />
+        </div>
+        <div className="flex-1 flex-grow text-right">
+          <Toggle
+            className="mb-1 w-36"
+            label="Nascoto"
+            onChange={value => setIsPrivate(value)}
+          />
+        </div>
       </div>
       <div className="flex justify-center">
       </div>
