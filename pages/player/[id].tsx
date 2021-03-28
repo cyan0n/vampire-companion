@@ -10,7 +10,6 @@ const PlayerPage = ({
 	player: Player
 }) => (
 	<Layout>
-		<h1>{player.name}</h1>
 		<Character character={player.character}/>
 	</Layout>
 )

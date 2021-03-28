@@ -46,9 +46,7 @@ export const FaceToEmoji = (face: DieFace): string => {
 }
 
 export const GetAvatar = (result: CheckResult) => {
-  console.log('enter')
   if (typeof result.success !== 'boolean') return
-  console.log('asd')
   if (result.success) {
     return 'https://www.clipartmax.com/png/middle/179-1795386_patient-success-success-icon-png.png'
   }

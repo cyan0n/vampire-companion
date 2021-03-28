@@ -1,6 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Character from '../types/character'
 import Attribute from './attribute'
+import AttributesComponent from './attributes'
+import NumberInput from './inputs/NumberInput'
+import RollCheckButton from './inputs/RollCheckButton'
+import Toggle from './inputs/ToggleInput'
 
 const { useState } = React
 
@@ -10,66 +14,55 @@ const CharacterComponent = ({
   character: Character
 }) => {
   const [poolSize, setPoolSize] = useState(0)
+  const [poolMod, setPoolMod] = useState(0)
   const [hunger, setHunger] = useState(0)
   const [difficulty, setDifficulty] = useState(0)
   const [isPrivate, setIsPrivate] = useState(false)
-  const [attributes, setAttributes] = useState({
-    strength: false,
-    agility: false,
-    intelligence: false,
-    knowledge: false,
-    charisma: false,
-    will: false,
-  })
-  
-  const test = (ctx) => {
-    debugger
-    console.log(ctx)
-  }
 
   return (
-    <div>
-      <h1>{character.name}</h1>
-      <h2>{character.clan}</h2>
-      <div className="flex flex-row">
-        <div className="mr-5">
-          <Attribute
-            label="Forza"
-            value={character.attributes.strength}
-            onUpdate={value => test(this)}
-          />
-          <Attribute
-            label="Agilitá"
-            value={character.attributes.agility}
-            onUpdate={value => setPoolSize(poolSize + value)}
-          />
-        </div>
-        <div className="mr-5">
-          <Attribute
-            label="Intelligenza"
-            value={character.attributes.intelligence}
-            onUpdate={value => setPoolSize(poolSize + value)}
-          />
-          <Attribute
-            label="Conoscienza"
-            value={character.attributes.knowledge}
-            onUpdate={value => setPoolSize(poolSize + value)}
-          />
-        </div>
-        <div className="mr-5">
-          <Attribute
-            label="Carisma"
-            value={character.attributes.charisma}
-            onUpdate={value => setPoolSize(poolSize + value)}
-          />
-          <Attribute
-            label="Volontá"
-            value={character.attributes.will}
-            onUpdate={value => setPoolSize(poolSize + value)}
-          />
-        </div>
+    <div className="pt-5">
+      <div className="flex flex-row justify-between mb-3">
+        <h1 className="text-xl">{character.name}</h1>
+        <h2 className="font-display text-xl">{character.clan}</h2>
       </div>
-      <div>Pool {poolSize}</div>
+      <AttributesComponent
+        attributes={character.attributes}
+        onUpdate={value => setPoolSize(value)}
+      />
+      <div className="flex flex-row justify-between items-end">
+        <NumberInput
+          label="Fame"
+          min={0} max={5}
+          onChange={value => setHunger(value)}
+        />
+        <NumberInput
+          label="Difficoltá"
+          onChange={value => setDifficulty(value)}
+        />
+        <NumberInput
+          label="Modificatore"
+          min={-5} max={5}
+          onChange={value => setPoolMod(value)}
+        />
+      </div>
+      <hr className="mt-4 mb-3"/>
+      <div className="flex flex-row justify-between">
+        <div className="font-display text-3xl flex items-center">
+          Pool: <span className="text-5xl ml-3">{poolSize + poolMod}</span>
+        </div>
+        <RollCheckButton
+          check={{poolSize: poolSize + poolMod, hunger, difficulty}}
+          username={character.name}
+          is_private={isPrivate}
+        />
+        <Toggle
+          className="mb-1 w-36"
+          label="Nascoto"
+          onChange={value => setIsPrivate(value)}
+        />
+      </div>
+      <div className="flex justify-center">
+      </div>
     </div>
   )
 }

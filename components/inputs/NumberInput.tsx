@@ -13,7 +13,7 @@ const NumberInput: React.FC<NumberInputProps> = ({
   min,
   max,
   onChange,
-  className,
+  className = "",
 }): ReactElement => {
   const [value, setValue] = React.useState(0)
 

@@ -1,35 +1,26 @@
 import React, {
-	ReactElement
+	ReactElement, useEffect
 } from 'react';
 import styles from '../styles/attribute.module.css'
 
 interface AttributeProps {
-	value: number
-	label?: String
+	attribute: {
+		label: string
+		value: number
+	}
 	className?: String
 	onUpdate?: (value: number) => void
 }
 
 const AttributeComponent: React.FC<AttributeProps> = ({
-	value,
-	label,
+	attribute,
 	className,
 	onUpdate = () => {},
 }): ReactElement => {
 	const [active, setActive] = React.useState(false)
-	const handleClick = () => {
-		const newActive = !active
-		setActive(newActive)
-		onUpdate(value * (newActive ? 1 : -1))
-	}
-	const firstMount = React.useRef(true)
 
-	React.useEffect(() => {
-		if (firstMount.current) {
-			firstMount.current = false
-		} else {
-			onUpdate(value * (active ? 1 : -1))
-		}
+	useEffect(() => {
+		onUpdate(active ? attribute.value : 0)
 	}, [active])
 
 	return (
@@ -41,11 +32,15 @@ const AttributeComponent: React.FC<AttributeProps> = ({
 				flex-row
 				justify-between
 				cursor-pointer
+				bg-gray-600
+				py-1
+				px-2
+				rounded
 			`}
 			onClick={() => setActive(!active)}
 		>
-			<div className="mr-4">{label}</div>
-			<div>{value}</div>
+			<div className="mr-4">{attribute.label}</div>
+			<div>{attribute.value}</div>
 		</div>
 	)
 }
