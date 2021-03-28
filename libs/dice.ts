@@ -29,7 +29,6 @@ export interface CheckResult {
   success?: boolean
 }
 
-
 export const Check = ({
   poolSize,
   hunger,
