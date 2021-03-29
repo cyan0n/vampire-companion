@@ -26,7 +26,7 @@ const LandingPage: React.FC<LandingPageProps> = ({
 		<ul className="space-y-4">
 			{players.map(player => (
 				<li key={player._id}>
-					<Link href={`/player/${player._id}`}>
+					<Link href={`/player/${player.character.name.toLowerCase()}`}>
 						<a className="h-14 font-display flex items-center justify-center mx-auto rounded-lg text-4xl w-2/3 bg-gray-700">{player.character.name}</a>
 					</Link>
 				</li>

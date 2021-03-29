@@ -20,3 +20,11 @@ export const GetPlayer = async (id: string) => {
 		.findOne({"_id": new ObjectID(id)})
 	return JSON.parse(JSON.stringify(player)) as Player
 }
+
+export const GetPlayerByName = async (name: string) => {
+	const { db } = await connectToDatabase()
+	const player = await db
+		.collection(collection)
+		.findOne({ "character.name": new RegExp(`^${name}$`, 'i') })
+	return JSON.parse(JSON.stringify(player)) as Player
+}

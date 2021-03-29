@@ -1,7 +1,7 @@
 import { GetServerSideProps } from 'next';
 import Player from '../../types/player';
 import Character from '../../components/character'
-import { GetPlayer } from '../../services/PlayerService'
+import { GetPlayerByName } from '../../services/PlayerService'
 import Layout from '../../components/layout';
 import Link from 'next/link';
 
@@ -18,8 +18,8 @@ const PlayerPage = ({
 	</Layout>
 )
 
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-	const player = await GetPlayer(params.id as string)
+export const getServerSideProps: GetServerSideProps = async ({ params: { name } }) => {
+	const player = await GetPlayerByName(name as string)
 	return {
 		props: {
 			player: player
